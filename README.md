@@ -1,1 +1,1285 @@
-# Portfolio
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barbara Saroukou — Analyste de données</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #181818;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: rgba(201,168,76,0.15);
+    --white: #f0ece4;
+    --muted: #888880;
+    --border: rgba(201,168,76,0.2);
+  }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–bg);
+color: var(–white);
+font-family: ‘Outfit’, sans-serif;
+font-weight: 300;
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+/* –– NOISE OVERLAY –– */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.04’/%3E%3C/svg%3E”);
+pointer-events: none;
+z-index: 1000;
+opacity: 0.4;
+}
+
+/* –– NAV –– */
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1.5rem 4rem;
+background: linear-gradient(to bottom, rgba(10,10,10,0.98), transparent);
+backdrop-filter: blur(10px);
+}
+
+.nav-logo {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.3rem;
+font-weight: 300;
+letter-spacing: 0.15em;
+color: var(–gold);
+text-decoration: none;
+}
+
+.nav-links {
+display: flex;
+gap: 2.5rem;
+list-style: none;
+}
+
+.nav-links a {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–muted);
+text-decoration: none;
+transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(–gold); }
+
+/* –– HERO –– */
+#hero {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 8rem 4rem 4rem;
+position: relative;
+overflow: hidden;
+}
+
+.hero-bg-line {
+position: absolute;
+right: 0; top: 0; bottom: 0;
+width: 45%;
+border-left: 1px solid var(–border);
+background: linear-gradient(135deg, transparent 0%, rgba(201,168,76,0.03) 100%);
+}
+
+.hero-eyebrow {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 1.5rem;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.hero-name {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(4rem, 10vw, 8.5rem);
+font-weight: 300;
+line-height: 0.95;
+letter-spacing: -0.02em;
+margin-bottom: 2rem;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+.hero-name em {
+font-style: italic;
+color: var(–gold);
+}
+
+.hero-desc {
+max-width: 480px;
+font-size: 1rem;
+color: var(–muted);
+line-height: 1.7;
+margin-bottom: 3rem;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.6s forwards;
+}
+
+.hero-actions {
+display: flex;
+gap: 1rem;
+flex-wrap: wrap;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.8s forwards;
+}
+
+.btn-primary {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+padding: 0.8rem 2rem;
+background: var(–gold);
+color: #0a0a0a;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.72rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+text-decoration: none;
+font-weight: 400;
+transition: all 0.3s;
+}
+
+.btn-primary:hover {
+background: var(–gold-light);
+transform: translateY(-2px);
+}
+
+.btn-outline {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+padding: 0.8rem 2rem;
+border: 1px solid var(–border);
+color: var(–muted);
+font-family: ‘DM Mono’, monospace;
+font-size: 0.72rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+text-decoration: none;
+transition: all 0.3s;
+}
+
+.btn-outline:hover {
+border-color: var(–gold);
+color: var(–gold);
+transform: translateY(-2px);
+}
+
+.hero-stats {
+position: absolute;
+right: 4rem;
+bottom: 4rem;
+display: flex;
+flex-direction: column;
+gap: 2rem;
+opacity: 0;
+animation: fadeUp 0.8s ease 1s forwards;
+}
+
+.stat {
+text-align: right;
+}
+
+.stat-number {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2.5rem;
+font-weight: 300;
+color: var(–gold);
+line-height: 1;
+}
+
+.stat-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–muted);
+margin-top: 0.2rem;
+}
+
+/* –– SECTIONS –– */
+section {
+padding: 6rem 4rem;
+position: relative;
+}
+
+.section-header {
+display: flex;
+align-items: center;
+gap: 1.5rem;
+margin-bottom: 4rem;
+}
+
+.section-num {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+color: var(–gold);
+letter-spacing: 0.2em;
+}
+
+.section-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2.5rem;
+font-weight: 300;
+letter-spacing: 0.05em;
+}
+
+.section-line {
+flex: 1;
+height: 1px;
+background: var(–border);
+}
+
+/* –– ABOUT –– */
+#about {
+background: var(–bg2);
+}
+
+.about-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 5rem;
+align-items: start;
+}
+
+.about-text p {
+color: var(–muted);
+font-size: 1rem;
+line-height: 1.8;
+margin-bottom: 1.5rem;
+}
+
+.about-text p strong {
+color: var(–white);
+font-weight: 400;
+}
+
+.about-info {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.info-item {
+display: flex;
+align-items: center;
+gap: 1rem;
+padding-bottom: 1.5rem;
+border-bottom: 1px solid var(–border);
+}
+
+.info-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–gold);
+min-width: 90px;
+}
+
+.info-value {
+font-size: 0.9rem;
+color: var(–muted);
+}
+
+.info-value a {
+color: var(–muted);
+text-decoration: none;
+transition: color 0.3s;
+}
+
+.info-value a:hover { color: var(–gold); }
+
+/* –– SKILLS –– */
+#skills { background: var(–bg); }
+
+.skills-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+}
+
+.skill-category {
+background: var(–bg);
+padding: 2rem;
+transition: background 0.3s;
+}
+
+.skill-category:hover {
+background: var(–bg3);
+}
+
+.skill-cat-title {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 1.2rem;
+}
+
+.skill-tags {
+display: flex;
+flex-wrap: wrap;
+gap: 0.5rem;
+}
+
+.skill-tag {
+font-size: 0.78rem;
+color: var(–muted);
+padding: 0.3rem 0.7rem;
+border: 1px solid rgba(136,136,128,0.2);
+transition: all 0.3s;
+}
+
+.skill-tag:hover {
+border-color: var(–gold);
+color: var(–gold);
+}
+
+/* –– EXPERIENCE –– */
+#experience { background: var(–bg2); }
+
+.exp-list {
+display: flex;
+flex-direction: column;
+gap: 0;
+}
+
+.exp-item {
+display: grid;
+grid-template-columns: 200px 1fr;
+gap: 3rem;
+padding: 2.5rem 0;
+border-bottom: 1px solid var(–border);
+position: relative;
+}
+
+.exp-item::before {
+content: ‘’;
+position: absolute;
+left: 200px;
+top: 0;
+bottom: 0;
+width: 1px;
+background: var(–border);
+}
+
+.exp-meta {
+padding-right: 2rem;
+}
+
+.exp-period {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+color: var(–gold);
+margin-bottom: 0.5rem;
+}
+
+.exp-company {
+font-size: 0.85rem;
+color: var(–muted);
+line-height: 1.4;
+}
+
+.exp-location {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.6rem;
+color: rgba(136,136,128,0.6);
+margin-top: 0.3rem;
+letter-spacing: 0.1em;
+}
+
+.exp-content { padding-left: 2rem; }
+
+.exp-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.4rem;
+font-weight: 300;
+margin-bottom: 1rem;
+letter-spacing: 0.03em;
+}
+
+.exp-bullets {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 0.6rem;
+}
+
+.exp-bullets li {
+font-size: 0.88rem;
+color: var(–muted);
+padding-left: 1.2rem;
+position: relative;
+line-height: 1.6;
+}
+
+.exp-bullets li::before {
+content: ‘—’;
+position: absolute;
+left: 0;
+color: var(–gold);
+font-size: 0.7rem;
+}
+
+.exp-bullets li strong {
+color: var(–white);
+font-weight: 400;
+}
+
+/* –– PROJECTS –– */
+#projects { background: var(–bg); }
+
+.projects-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+}
+
+.project-card {
+background: var(–bg);
+padding: 2rem;
+display: flex;
+flex-direction: column;
+gap: 1rem;
+transition: background 0.3s;
+text-decoration: none;
+color: inherit;
+}
+
+.project-card:hover {
+background: var(–bg3);
+}
+
+.project-card.featured {
+grid-column: span 2;
+background: var(–bg2);
+border-left: 3px solid var(–gold);
+}
+
+.project-type {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.6rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(–gold);
+}
+
+.project-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.5rem;
+font-weight: 300;
+letter-spacing: 0.03em;
+}
+
+.project-desc {
+font-size: 0.85rem;
+color: var(–muted);
+line-height: 1.7;
+flex: 1;
+}
+
+.project-stack {
+display: flex;
+flex-wrap: wrap;
+gap: 0.4rem;
+margin-top: auto;
+}
+
+.stack-tag {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.6rem;
+letter-spacing: 0.1em;
+color: rgba(201,168,76,0.7);
+padding: 0.2rem 0.5rem;
+border: 1px solid rgba(201,168,76,0.2);
+}
+
+.project-arrow {
+font-size: 1.2rem;
+color: var(–gold);
+margin-top: 0.5rem;
+transition: transform 0.3s;
+}
+
+.project-card:hover .project-arrow {
+transform: translateX(4px);
+}
+
+/* –– EDUCATION –– */
+#education { background: var(–bg2); }
+
+.edu-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+}
+
+.edu-card {
+background: var(–bg2);
+padding: 2.5rem;
+transition: background 0.3s;
+}
+
+.edu-card:hover { background: var(–bg3); }
+
+.edu-period {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+color: var(–gold);
+margin-bottom: 0.8rem;
+}
+
+.edu-degree {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.3rem;
+font-weight: 300;
+margin-bottom: 0.5rem;
+}
+
+.edu-school {
+font-size: 0.85rem;
+color: var(–muted);
+}
+
+.edu-location {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.6rem;
+color: rgba(136,136,128,0.5);
+margin-top: 0.3rem;
+letter-spacing: 0.1em;
+}
+
+.edu-badge {
+display: inline-block;
+margin-top: 1rem;
+padding: 0.2rem 0.6rem;
+border: 1px solid var(–border);
+font-family: ‘DM Mono’, monospace;
+font-size: 0.6rem;
+letter-spacing: 0.1em;
+color: var(–muted);
+}
+
+.edu-badge.active {
+border-color: rgba(201,168,76,0.4);
+color: var(–gold);
+}
+
+/* –– CERTIFICATIONS –– */
+.certs-row {
+display: flex;
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+margin-top: 2rem;
+}
+
+.cert-item {
+flex: 1;
+background: var(–bg);
+padding: 1.5rem 2rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.cert-dot {
+width: 8px;
+height: 8px;
+background: var(–gold);
+flex-shrink: 0;
+}
+
+.cert-text {
+font-size: 0.85rem;
+color: var(–muted);
+}
+
+.cert-issuer {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.6rem;
+letter-spacing: 0.1em;
+color: rgba(136,136,128,0.5);
+margin-top: 0.2rem;
+}
+
+/* –– LANGUAGES –– */
+.lang-row {
+display: flex;
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+margin-top: 2rem;
+}
+
+.lang-item {
+flex: 1;
+background: var(–bg2);
+padding: 1.5rem 2rem;
+}
+
+.lang-name {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.2rem;
+font-weight: 300;
+margin-bottom: 0.3rem;
+}
+
+.lang-level {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+color: var(–gold);
+}
+
+/* –– CONTACT –– */
+#contact {
+background: var(–bg);
+text-align: center;
+padding: 8rem 4rem;
+}
+
+.contact-headline {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2.5rem, 6vw, 5rem);
+font-weight: 300;
+line-height: 1.1;
+margin-bottom: 2rem;
+letter-spacing: 0.02em;
+}
+
+.contact-headline em {
+font-style: italic;
+color: var(–gold);
+}
+
+.contact-sub {
+font-size: 0.95rem;
+color: var(–muted);
+max-width: 440px;
+margin: 0 auto 3rem;
+line-height: 1.7;
+}
+
+.contact-links {
+display: flex;
+justify-content: center;
+gap: 2rem;
+flex-wrap: wrap;
+margin-bottom: 4rem;
+}
+
+.contact-link {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.3rem;
+text-decoration: none;
+transition: transform 0.3s;
+}
+
+.contact-link:hover { transform: translateY(-3px); }
+
+.contact-link-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.6rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–gold);
+}
+
+.contact-link-value {
+font-size: 0.85rem;
+color: var(–muted);
+}
+
+.availability-badge {
+display: inline-flex;
+align-items: center;
+gap: 0.6rem;
+padding: 0.6rem 1.5rem;
+border: 1px solid rgba(201,168,76,0.3);
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–gold);
+}
+
+.availability-dot {
+width: 6px;
+height: 6px;
+background: #4caf50;
+border-radius: 50%;
+animation: pulse 2s infinite;
+}
+
+/* –– FOOTER –– */
+footer {
+padding: 2rem 4rem;
+border-top: 1px solid var(–border);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+footer p {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.6rem;
+letter-spacing: 0.15em;
+color: rgba(136,136,128,0.4);
+}
+
+/* –– ANIMATIONS –– */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+0%, 100% { opacity: 1; }
+50% { opacity: 0.4; }
+}
+
+.reveal {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* –– RESPONSIVE –– */
+@media (max-width: 900px) {
+nav { padding: 1.2rem 2rem; }
+.nav-links { display: none; }
+section, #hero, #contact { padding: 4rem 2rem; }
+.about-grid { grid-template-columns: 1fr; gap: 2rem; }
+.skills-grid { grid-template-columns: 1fr; }
+.projects-grid { grid-template-columns: 1fr; }
+.project-card.featured { grid-column: span 1; }
+.edu-grid { grid-template-columns: 1fr; }
+.certs-row { flex-direction: column; }
+.lang-row { flex-direction: column; }
+.exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+.exp-item::before { display: none; }
+.exp-content { padding-left: 0; }
+.hero-stats { display: none; }
+footer { flex-direction: column; gap: 1rem; text-align: center; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <a href="javascript:void(0)" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="nav-logo">B. Saroukou</a>
+  <ul class="nav-links">
+    <li><a href="javascript:void(0)" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Profil</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">Compétences</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">Expérience</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projets</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('education').scrollIntoView({behavior:'smooth'})">Formation</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+
+<section id="hero">
+  <div class="hero-bg-line"></div>
+  <div class="hero-eyebrow">Disponible pour nouvelles opportunités · Longueuil, QC</div>
+  <h1 class="hero-name">Barbara<br><em>Saroukou</em></h1>
+  <p class="hero-desc">
+    Analyste de données & développeuse web. Expérience en Python, SQL, Power BI, machine learning et automatisation de flux de données.
+  </p>
+  <div class="hero-actions">
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="btn-primary">Me contacter →</button>
+    <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})" class="btn-outline">Voir mes projets</button>
+    <a href="https://www.linkedin.com/in/nimath-barbara-saroukou-906851207" target="_blank" class="btn-outline">LinkedIn</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-number">5+</div>
+      <div class="stat-label">Expériences</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">6</div>
+      <div class="stat-label">Projets web</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">2026</div>
+      <div class="stat-label">Diplôme UQTR</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Profil</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        Étudiante en fin de baccalauréat en informatique – Science des données à <strong>l'UQTR</strong> (diplôme avril 2026), avec une expérience concrète en stage chez <strong>IA Groupe Financier</strong> (analyste données, en cours).
+      </p>
+      <p>
+        Mon profil combine l'<strong>analyse de données</strong> — modélisation, visualisation, machine learning — et le <strong>développement web</strong>, avec une expertise en automatisation de processus, optimisation SQL et création d'outils métier.
+      </p>
+      <p>
+        Rigoureuse, curieuse et polyvalente, je cherche un poste permanent où contribuer à des projets data à impact réel.
+      </p>
+    </div>
+    <div class="about-info reveal">
+      <div class="info-item">
+        <span class="info-label">Localisation</span>
+        <span class="info-value">Longueuil, QC, Canada</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Téléphone</span>
+        <span class="info-value"><a href="tel:+18197017402">+1 819 701-7402</a></span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Email</span>
+        <span class="info-value"><a href="mailto:nimatoulaisaroukou@gmail.com">nimatoulaisaroukou@gmail.com</a></span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">LinkedIn</span>
+        <span class="info-value"><a href="https://www.linkedin.com/in/nimath-barbara-saroukou-906851207" target="_blank">Voir le profil →</a></span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Credly</span>
+        <span class="info-value"><a href="https://www.credly.com/users/barbara-saroukou/badges" target="_blank">Voir les badges →</a></span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Langues</span>
+        <span class="info-value">Français (C1) · Anglais (B1)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Compétences</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-category">
+      <div class="skill-cat-title">Langages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">C / C++</span>
+        <span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">R</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">Analyse de données</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">Scikit-learn</span>
+        <span class="skill-tag">Matplotlib</span>
+        <span class="skill-tag">Seaborn</span>
+        <span class="skill-tag">Excel avancé</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Tableau</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">Machine Learning</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Régression</span>
+        <span class="skill-tag">Classification</span>
+        <span class="skill-tag">K-Means</span>
+        <span class="skill-tag">DBSCAN</span>
+        <span class="skill-tag">Clustering hiérarchique</span>
+        <span class="skill-tag">Sélection de variables</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">Bases de données</div>
+      <div class="skill-tags">
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">Web & API</div>
+      <div class="skill-tags">
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Flask</span>
+        <span class="skill-tag">API REST</span>
+        <span class="skill-tag">HTML/CSS</span>
+        <span class="skill-tag">SEO</span>
+        <span class="skill-tag">Google Analytics</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">Outils & CRM</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Salesforce</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">SEMrush</span>
+        <span class="skill-tag">VMware</span>
+        <span class="skill-tag">Cisco Packet Tracer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Expérience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-list">
+
+```
+<div class="exp-item reveal">
+  <div class="exp-meta">
+    <div class="exp-period">01/2026 — En cours</div>
+    <div class="exp-company">IA Groupe Financier</div>
+    <div class="exp-location">Trois-Rivières, QC</div>
+  </div>
+  <div class="exp-content">
+    <div class="exp-title">Stagiaire en Science des Données</div>
+    <ul class="exp-bullets">
+      <li>Conçu et déployé un site web de génération de leads avec formulaires préremplis (HTML/CSS/JS/PHP) incluant attribution automatique des prospects</li>
+      <li>Automatisé l'acheminement des e-mails vers <strong>10+ conseillers</strong> via Python avec système de rotation équitable, éliminant les interventions manuelles</li>
+      <li>Intégré Google Analytics et un blog pour le suivi en temps réel des KPIs de trafic et la conformité <strong>Loi 25</strong></li>
+      <li>Numérisé et indexé des archives historiques dans MySQL via Salesforce, améliorant l'accessibilité des données internes</li>
+      <li>Développé un espace administrateur sécurisé (authentification, gestion <strong>CRUD</strong> des conseillers)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exp-item reveal">
+  <div class="exp-meta">
+    <div class="exp-period">06/2025 — 09/2025</div>
+    <div class="exp-company">Loriginal.org / Artur.art</div>
+    <div class="exp-location">Montréal, QC</div>
+  </div>
+  <div class="exp-content">
+    <div class="exp-title">Stagiaire Analyste de Données</div>
+    <ul class="exp-bullets">
+      <li>Étude de marché évaluant <strong>3 segments</strong> (cadeau, décoration, art) en Amérique et Europe — marché cible identifié à <strong>500 000 $+</strong></li>
+      <li>Analyse du trafic inbound via SEMrush, révélant <strong>15 % d'opportunités SEO inexploitées</strong></li>
+      <li>Modélisation de scénarios de ventes intégrant le CAC et 3 canaux publicitaires, projetant une croissance de <strong>20 % sur 6 mois</strong></li>
+      <li>Produit un rapport de prévisions financières orientant le budget marketing annuel</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exp-item reveal">
+  <div class="exp-meta">
+    <div class="exp-period">02/2025 — 06/2025</div>
+    <div class="exp-company">Cheleil</div>
+    <div class="exp-location">Montréal, QC</div>
+  </div>
+  <div class="exp-content">
+    <div class="exp-title">Stagiaire Développement Web</div>
+    <ul class="exp-bullets">
+      <li>Tests A/B augmentant le taux de conversion de <strong>+12 % en 3 mois</strong></li>
+      <li>Développé un module d'import/export de données CSV/JSON, réduisant le temps d'intégration manuelle de <strong>40 %</strong></li>
+      <li>Optimisé les requêtes SQL complexes, améliorant le temps de réponse de <strong>35 %</strong></li>
+      <li>Créé des dashboards dans Google Analytics et Data Studio pour le monitoring automatisé des KPIs web</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exp-item reveal">
+  <div class="exp-meta">
+    <div class="exp-period">04/2021 — 12/2022</div>
+    <div class="exp-company">ASIN</div>
+    <div class="exp-location">Cotonou, Bénin</div>
+  </div>
+  <div class="exp-content">
+    <div class="exp-title">Stagiaire Développeuse d'Applications</div>
+    <ul class="exp-bullets">
+      <li>Automatisé des processus répétitifs via scripts Python, réduisant les tâches manuelles de <strong>25 %</strong></li>
+      <li>Développé des fonctionnalités web optimisées pour le SEO, générant <strong>+10 % de trafic organique</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="exp-item reveal">
+  <div class="exp-meta">
+    <div class="exp-period">04/2020 — 01/2021</div>
+    <div class="exp-company">HESSYSTEM</div>
+    <div class="exp-location">Cotonou, Bénin</div>
+  </div>
+  <div class="exp-content">
+    <div class="exp-title">Stagiaire en Réseaux</div>
+    <ul class="exp-bullets">
+      <li>Intégré des protocoles de sécurité (VPN, firewall), améliorant la sécurité et la performance de <strong>30 %</strong></li>
+      <li>Tests de performance et de charge sur équipements réseau avant déploiement en production</li>
+    </ul>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Projets</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid reveal">
+
+```
+<!-- PROJET DATA 1 : ÉNERGIE CANADA -->
+<div class="project-card featured">
+  <div class="project-type">Analyse de données · Python · Power BI · Données ouvertes Canada</div>
+  <div class="project-title">Consommation énergétique résidentielle au Canada</div>
+  <div class="project-desc">
+    Analyse exploratoire et prédictive de la consommation énergétique résidentielle par province (2000–2021), à partir de la <strong>Base de données nationale sur la consommation d'énergie (Ressources naturelles Canada)</strong>. Identification des tendances par secteur, clustering K-Means des profils provinciaux, et modélisation de scénarios de réduction des émissions GES.
+  </div>
+  <div class="project-stack">
+    <span class="stack-tag">Python</span>
+    <span class="stack-tag">Pandas</span>
+    <span class="stack-tag">Scikit-learn</span>
+    <span class="stack-tag">Power BI</span>
+    <span class="stack-tag">K-Means</span>
+    <span class="stack-tag">NRCan Open Data</span>
+  </div>
+  <div style="margin-top:1rem; font-size:0.7rem; font-family:'DM Mono',monospace; color:rgba(201,168,76,0.5); letter-spacing:0.1em;">
+    Source : oee.nrcan.gc.ca · données publiques
+  </div>
+</div>
+
+<!-- PROJET DATA 2 : PHARMA SANTÉ CANADA -->
+<div class="project-card">
+  <div class="project-type">Data · Santé · Classification · Santé Canada</div>
+  <div class="project-title">Analyse des médicaments approuvés — Santé Canada</div>
+  <div class="project-desc">
+    Exploration de la <strong>Base de données sur les produits pharmaceutiques (BDPP) de Santé Canada</strong> : classification thérapeutique, voies d'administration, évolution des approbations dans le temps. Visualisation des catégories dominantes et détection d'anomalies dans les données de discontinuation.
+  </div>
+  <div class="project-stack">
+    <span class="stack-tag">Python</span>
+    <span class="stack-tag">Pandas</span>
+    <span class="stack-tag">Matplotlib</span>
+    <span class="stack-tag">Seaborn</span>
+    <span class="stack-tag">SQL</span>
+    <span class="stack-tag">open.canada.ca</span>
+  </div>
+  <div style="margin-top:1rem; font-size:0.7rem; font-family:'DM Mono',monospace; color:rgba(201,168,76,0.5); letter-spacing:0.1em;">
+    Source : open.canada.ca · données publiques
+  </div>
+</div>
+
+<!-- PROJET DATA 3 : INCIDENTS PIPELINES -->
+<div class="project-card">
+  <div class="project-type">Analyse prédictive · Sécurité · Régie de l'énergie du Canada</div>
+  <div class="project-title">Incidents sur pipelines canadiens — Modèle prédictif</div>
+  <div class="project-desc">
+    Analyse des incidents déclarés sur les pipelines réglementés (2008–2024) à partir des données de la <strong>Régie de l'énergie du Canada</strong>. Modèle de classification pour prédire la gravité des incidents selon la cause, la région et le type d'infrastructure.
+  </div>
+  <div class="project-stack">
+    <span class="stack-tag">Python</span>
+    <span class="stack-tag">Scikit-learn</span>
+    <span class="stack-tag">Régression logistique</span>
+    <span class="stack-tag">Classification</span>
+    <span class="stack-tag">Tableau</span>
+    <span class="stack-tag">cer-rec.gc.ca</span>
+  </div>
+  <div style="margin-top:1rem; font-size:0.7rem; font-family:'DM Mono',monospace; color:rgba(201,168,76,0.5); letter-spacing:0.1em;">
+    Source : cer-rec.gc.ca · données publiques
+  </div>
+</div>
+
+<!-- PROJET WEB : ANALYSE DE MARCHÉ (stage réel) -->
+<div class="project-card">
+  <div class="project-type">Analyse de marché · Stage · Loriginal.org</div>
+  <div class="project-title">Prévisions financières — Marché Art & Décoration</div>
+  <div class="project-desc">
+    Étude de marché multi-segments (cadeau, décoration, art) en Amérique et Europe. Modélisation CAC, scénarios de croissance sur 3 canaux publicitaires. Rapport de prévisions financières orientant le budget marketing annuel.
+  </div>
+  <div class="project-stack">
+    <span class="stack-tag">Excel</span>
+    <span class="stack-tag">SEMrush</span>
+    <span class="stack-tag">Analyse financière</span>
+    <span class="stack-tag">Python</span>
+  </div>
+</div>
+
+<!-- PROJET WEB REACT -->
+<a href="https://portfolioo-sable-five.vercel.app" target="_blank" class="project-card">
+  <div class="project-type">Développement web · React · Vercel</div>
+  <div class="project-title">Culture Tour</div>
+  <div class="project-desc">Site web tourisme et voyages conçu avec React, hébergé sur Vercel.</div>
+  <div class="project-stack">
+    <span class="stack-tag">React</span>
+    <span class="stack-tag">Vercel</span>
+  </div>
+  <div class="project-arrow">→</div>
+</a>
+
+<!-- PROJET COMMUNAUTÉ -->
+<div class="project-card">
+  <div class="project-type">Communauté · Wix · Événements</div>
+  <div class="project-title">Afro Women Workshop</div>
+  <div class="project-desc">Plateforme communautaire pour femmes afrodescendantes avec calendrier d'événements et profils personnalisés.</div>
+  <div class="project-stack">
+    <span class="stack-tag">Wix</span>
+    <span class="stack-tag">Communauté</span>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+
+<section id="education">
+  <div class="section-header reveal">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Formation & Certifications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid reveal">
+    <div class="edu-card">
+      <div class="edu-period">2023 — 2026</div>
+      <div class="edu-degree">Baccalauréat en Informatique<br>– Science des données</div>
+      <div class="edu-school">Université du Québec à Trois-Rivières</div>
+      <div class="edu-location">TROIS-RIVIÈRES, QC</div>
+      <span class="edu-badge active">En cours · Diplôme avril 2026</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-period">2020 — 2022</div>
+      <div class="edu-degree">Bac+2 en Informatique</div>
+      <div class="edu-school">Université EPITECH</div>
+      <div class="edu-location">COTONOU, BÉNIN</div>
+      <span class="edu-badge">Complété</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-period">2018 — 2019</div>
+      <div class="edu-degree">Diplôme de fin de collégial<br>– Série scientifique</div>
+      <div class="edu-school">Complexe Scolaire La Rose – Rosette</div>
+      <div class="edu-location">COTONOU, BÉNIN</div>
+      <span class="edu-badge">Complété</span>
+    </div>
+  </div>
+
+  <div class="certs-row reveal">
+    <div class="cert-item">
+      <div class="cert-dot"></div>
+      <div>
+        <div class="cert-text">MongoDB Advanced Schema Design · Schema Design Optimization · Relational to Document Model</div>
+        <div class="cert-issuer">MongoDB University · 2025 · <a href="https://www.credly.com/users/barbara-saroukou/badges" target="_blank" style="color:var(--gold); text-decoration:none;">Voir sur Credly →</a></div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot"></div>
+      <div>
+        <div class="cert-text">Salesforce Trailhead — certifications CRM & data</div>
+        <div class="cert-issuer">Salesforce · <a href="https://www.salesforce.com/trailblazer/ihh2iy9zbublxraahs" target="_blank" style="color:var(--gold); text-decoration:none;">Voir le profil →</a></div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot"></div>
+      <div>
+        <div class="cert-text">Premium Micro-WIL en Blockchain Avancée <span style="color:rgba(136,136,128,0.6); font-size:0.75rem;">— formation académique structurée dans le cadre du programme canadien Micro-WIL, non liée à une orientation carrière crypto</span></div>
+        <div class="cert-issuer">Institut Canadien de la Mobilité et de l'Aérospatiale · Avril 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+  <div class="availability-badge reveal">
+    <div class="availability-dot"></div>
+    Disponible pour nouvelles opportunités
+  </div>
+  <h2 class="contact-headline reveal">
+    Travaillons<br><em>ensemble</em>
+  </h2>
+  <p class="contact-sub reveal">
+    Je suis à la recherche d'un poste en analyse de données ou développement web au Québec. N'hésitez pas à me contacter.
+  </p>
+  <div class="contact-links reveal">
+    <a href="mailto:nimatoulaisaroukou@gmail.com" class="contact-link">
+      <span class="contact-link-label">Email</span>
+      <span class="contact-link-value">nimatoulaisaroukou@gmail.com</span>
+    </a>
+    <a href="tel:+18197017402" class="contact-link">
+      <span class="contact-link-label">Téléphone</span>
+      <span class="contact-link-value">+1 819 701-7402</span>
+    </a>
+    <a href="https://www.linkedin.com/in/nimath-barbara-saroukou-906851207" target="_blank" class="contact-link">
+      <span class="contact-link-label">LinkedIn</span>
+      <span class="contact-link-value">nimath-barbara-saroukou</span>
+    </a>
+  </div>
+  <a href="mailto:nimatoulaisaroukou@gmail.com" class="btn-primary reveal">Envoyer un message →</a>
+</section>
+
+<footer>
+  <p>© 2026 Barbara Saroukou</p>
+  <p>Sciences des données · Développeuse web · Longueuil, QC</p>
