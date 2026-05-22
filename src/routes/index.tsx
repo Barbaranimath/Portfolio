@@ -19,15 +19,13 @@ function HomePage() {
           {/* Left */}
           <div>
             <p className="font-mono text-xs font-medium uppercase tracking-widest text-accent">
-              Data Scientist · Développeuse Web · ML · NLP
+              Finissante en Informatique
             </p>
             <h1 className="mt-4 text-5xl font-bold tracking-tight leading-[1.08] md:text-7xl">
               Barbara<br />Saroukou
             </h1>
             <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground md:text-xl">
-              Data scientist et développeuse web. Je construis des modèles de
-              machine learning interprétables et des applications orientées données,
-              du préprocessing jusqu'aux résultats actionnables.
+              Finissante en informatique spécialisée en science des données, avec expérience en automatisation Python, SQL, développement web, tableaux de bord et analytics. Intéressée par les rôles d'analyste de données, BI, data operations et développement d'outils orientés données.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -194,36 +192,87 @@ function HomePage() {
                 Expertise
               </p>
             </div>
-            <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {[
                 {
-                  title: "Data Science & ML",
+                  title: "Frontend Web",
                   items: [
-                    "Random Forest & XGBoost",
-                    "Régression, classification, clustering",
-                    "SMOTE & rééquilibrage",
-                    "Cross-validation & ROC-AUC",
-                    "SHAP (interprétabilité)",
+                    "React 18, TypeScript",
+                    "Vite, Tailwind CSS",
+                    "Framer Motion",
+                    "React Router v6",
+                    "React Query",
+                    "SPA modernes",
                   ],
                 },
                 {
-                  title: "NLP & Analyse de données",
+                  title: "Mobile & Cross-Platform",
                   items: [
-                    "TF-IDF & bigrammes",
-                    "FinBERT & HuggingFace",
-                    "Pandas, NumPy, Scikit-learn",
-                    "Power BI, Tableau, Data Studio",
-                    "Excel avancé",
+                    "Flutter",
+                    "Flutter Neumorphic",
+                    "Mobile-first design",
+                    "Responsive avancé",
+                    "Composants réutilisables",
                   ],
                 },
                 {
-                  title: "Développement Web & Outils",
+                  title: "Backend & Bases de données",
                   items: [
-                    "Python, SQL, JavaScript, PHP",
-                    "React, TypeScript, Flask",
-                    "MySQL, PostgreSQL, MongoDB",
-                    "Git, Docker, Google Analytics",
-                    "REST API, HTML/CSS",
+                    "Node.js, Python",
+                    "Supabase (auth, DB, Edge Functions)",
+                    "MongoDB, PostgreSQL, MySQL",
+                    "Laravel, PHP",
+                    "REST API, formulaires dynamiques",
+                  ],
+                },
+                {
+                  title: "Data Science & Analytics",
+                  items: [
+                    "Python, Pandas, NumPy",
+                    "Scikit-learn, XGBoost",
+                    "SMOTE, SHAP, ROC-AUC",
+                    "Power BI, Tableau",
+                    "Google Analytics, SQL",
+                  ],
+                },
+                {
+                  title: "Architecture & Performance",
+                  items: [
+                    "Architecture modulaire",
+                    "Design system cohérent",
+                    "Optimisation performances",
+                    "Debugging avancé",
+                    "Refactorisation sans régression",
+                  ],
+                },
+                {
+                  title: "DevOps & Déploiement",
+                  items: [
+                    "Docker, Vite, esbuild",
+                    "Hébergement web (HOSTINGER, WHC)",
+                    "SFTP, DNS, configuration",
+                    "WordPress, mise en production",
+                    "Maintenance informatique",
+                  ],
+                },
+                {
+                  title: "UI/UX Design",
+                  items: [
+                    "Figma",
+                    "Mobile-first design",
+                    "Micro-interactions",
+                    "Animations modernes",
+                    "Ergonomie avancée",
+                  ],
+                },
+                {
+                  title: "Intégrations & Outils",
+                  items: [
+                    "API IA & Chatbot",
+                    "Notifications email (OTP)",
+                    "Persistance des données",
+                    "Git, npm",
+                    "Fusion de codebases",
                   ],
                 },
               ].map((g) => (
